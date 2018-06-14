@@ -55,7 +55,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dynamic_preferences',
-    'dynamic_preferences.users.apps.UserPreferencesConfig',
     'example',
 )
 
@@ -78,8 +77,12 @@ WSGI_APPLICATION = 'example.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'preferences',
+        'USER': '<username>',
+        'PASSWORD': '<password>',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
