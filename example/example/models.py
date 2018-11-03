@@ -1,4 +1,5 @@
 from django.db import models
+from dynamic_preferences.models import PerInstancePreferenceModel
 from dynamic_preferences.registries import global_preferences_registry
 
 
@@ -12,3 +13,11 @@ class MyModel(models.Model):
 
         # We can then use our global preferences however we like
         global_preferences['general__presentation']
+
+
+class MyPreferenceModel(PerInstancePreferenceModel):
+
+    instance = models.ForeignKey(MyModel, models.CASCADE)
+
+    class Meta:
+        app_label = 'example'

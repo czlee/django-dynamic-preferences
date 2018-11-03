@@ -3,6 +3,8 @@ from dynamic_preferences.registries import global_preferences_registry
 from dynamic_preferences.users.registries import user_preferences_registry
 
 from .models import MyModel
+from .registries import my_model_preferences_registry
+
 
 _section = Section("section")
 
@@ -84,6 +86,7 @@ class IsFanOfTokioHotel(BooleanPreference):
     name = "is_fan_of_tokio_hotel"
     default = False
 
+
 @user_preferences_registry.register
 class MyModelPreference(ModelChoicePreference):
 
@@ -92,3 +95,17 @@ class MyModelPreference(ModelChoicePreference):
     default = None
     queryset = MyModel.objects.all()
     required = False
+
+
+@my_model_preferences_registry.register
+class IsEnabled(BooleanPreference):
+    section = "general"
+    name = "enabled"
+    default = False
+
+
+@my_model_preferences_registry.register
+class PreferredName(StringPreference):
+    section = "general"
+    name = "preferred_name"
+    default = ""
